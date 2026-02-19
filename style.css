@@ -64,15 +64,18 @@ body{
   justify-content: center;
   gap: 10px;
 
-  background: var(--nav-bg);
-  border: 1px solid var(--nav-border);
+  background: rgba(10,10,12,0.35);
+  border: 1px solid rgba(255,255,255,0.14);
 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
   border-radius: 999px;
-  z-index: 10;
+
+  z-index: 9999;          /* ⭐ 최상단 */
+  pointer-events: auto;   /* ⭐ 클릭 가능 */
 }
+
 
 .navlink{
   text-decoration: none;
