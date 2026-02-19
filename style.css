@@ -1,82 +1,180 @@
-/* 전체 페이지 */
-body {
-    margin: 0;
-    padding: 0;
+/* ===== Reset & Base ===== */
+:root{
+  --bg-overlay-1: rgba(0,0,0,0.60);
+  --bg-overlay-2: rgba(0,0,0,0.35);
 
-    background-image: url("arduino/background.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  --text-strong: rgba(255,255,255,0.92);
+  --text-mid: rgba(255,255,255,0.78);
+  --text-soft: rgba(255,255,255,0.62);
 
-    height: 100vh;
+  --card-bg: rgba(255,255,255,0.10);
+  --card-border: rgba(255,255,255,0.18);
 
-    font-family: 'Pretendard', sans-serif;
+  --accent: #ffd6d6;
 }
 
-
-/* 전체 내용을 중앙 정렬 */
-.overlay {
-    background: linear-gradient(
-        rgba(0,0,0,0.7),
-        rgba(0,0,0,0.4)
-    );
-
-    height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    color: white;
+*{
+  box-sizing: border-box;
 }
 
-
-
-/* 메인 제목 */
-header h1 {
-    font-size: 56px;
-    margin-bottom: 10px;
-
-    font-weight: 700;
-
-    color: #ffffff;
-
-    text-shadow: 0 0 20px rgba(255,255,255,0.3);
+html, body{
+  height: 100%;
 }
 
+body{
+  margin: 0;
+  padding: 0;
 
-/* 부제목 */
-.subtitle {
-    font-size: 20px;
+  background-image: url("arduino/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    color: rgba(255,255,255,0.8);
+  font-family: 'Pretendard', system-ui, -apple-system, sans-serif;
+  color: var(--text-strong);
 
-    margin-bottom: 40px;
+  /* 배경이 너무 튀면 살짝 톤 다운 느낌 */
+  filter: saturate(0.95) contrast(0.98);
 }
 
+/* ===== Overlay (배경톤 + 유리 느낌) ===== */
+.overlay{
+  min-height: 100vh;
+  width: 100%;
 
-/* 섹션 */
-section {
-    margin-top: 20px;
+  /* 위에서 아래로 자연스럽게 어두워지는 그라데이션 */
+  background: linear-gradient(
+    180deg,
+    var(--bg-overlay-1) 0%,
+    var(--bg-overlay-2) 60%,
+    rgba(0,0,0,0.20) 100%
+  );
+
+  /* 가운데 정렬 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 텍스트 정렬 */
+  text-align: center;
+
+  /* 모바일 padding */
+  padding: 56px 18px;
 }
 
+/* ===== 가운데 내용 래퍼 (카드형) ===== */
+.overlay > header,
+.overlay > section{
+  width: 100%;
+}
+
+.overlay{
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 전체 컨텐츠를 감싸는 느낌을 카드로 주고 싶으면
+   HTML에 wrapper div를 추가하는게 베스트지만,
+   지금 구조 유지하면서 섹션 각각 카드로 만들어줌 */
+section{
+  width: 100%;
+  max-width: 720px;
+
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+
+  padding: 18px 18px;
+
+  /* 유리 느낌 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+
+  margin: 0;
+}
+
+/* header는 카드 느낌을 조금 다르게 */
+header{
+  width: 100%;
+  max-width: 720px;
+
+  padding: 22px 18px 10px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 22px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+}
+
+/* ===== Typography ===== */
+header h1{
+  margin: 0;
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+
+  color: var(--text-strong);
+
+  /* 과한 글로우 제거하고 고급스럽게 */
+  text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.subtitle{
+  margin: 10px 0 0;
+  font-size: clamp(14px, 2.2vw, 18px);
+  font-weight: 450;
+  color: var(--text-mid);
+  letter-spacing: -0.01em;
+}
 
 /* 섹션 제목 */
-h2 {
-    font-size: 28px;
-
-    color: #ffdede;
-
-    margin-bottom: 10px;
+h2{
+  margin: 0 0 8px;
+  font-size: clamp(16px, 2.6vw, 22px);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
 }
 
+/* 본문 */
+p{
+  margin: 0;
+  font-size: clamp(14px, 2.3vw, 17px);
+  line-height: 1.6;
+  color: var(--text-mid);
+}
 
-/* 일반 텍스트 */
-p {
-    font-size: 18px;
+/* D-DAY 텍스트가 좀 더 강조되게 */
+#dDay{
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--text-strong);
+}
 
-    color: rgba(255,255,255,0.85);
+/* ===== 섹션 간격 ===== */
+.overlay header{
+  margin-bottom: 14px;
+}
+
+/* ===== 모바일에서 너무 붙으면 더 여유 ===== */
+@media (max-width: 480px){
+  .overlay{
+    padding: 46px 14px;
+    gap: 14px;
+  }
+
+  header{
+    border-radius: 18px;
+  }
+
+  section{
+    border-radius: 16px;
+    padding: 16px 14px;
+  }
 }
