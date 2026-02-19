@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>우리만의 공간</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <div class="overlay">
 
-    <header>
-      <h1>오봉빙스페이스</h1>
-      <p class="subtitle">타로맘 오복맘의 공간</p>
-    </header>
+    <nav class="topnav">
+      <a href="#home" class="navlink">홈</a>
+      <a href="#story" class="navlink">스토리</a>
+      <a href="#schedule" class="navlink">일정표</a>
+      <a href="#photo" class="navlink">찰칵스</a>
+    </nav>
 
-    <section class="story">
-      <h2>오봉빙스토리</h2>
-      <p>
-     여기엔 무엇이 들어갈까나리
-      </p>
-    </section>
+    <main class="wrap">
 
-    <section class="anniversary">
-      <h2>📅일정표</h2>
-      <p id="dDay"></p>
-    </section>
+      <header id="home" class="hero">
+        <h1>오봉빙스페이스</h1>
+        <p class="subtitle">타로맘 오복맘의 공간</p>
+      </header>
 
-    <section class="photo">
-      <h2>📸끼욕스 찰칵스</h2>
-    </section>
+      <section id="story" class="section">
+        <h2>오봉빙스토리</h2>
+        <p>여기엔 무엇이 들어갈까나리</p>
+      </section>
 
+      <section id="schedule" class="section">
+        <h2>일정표</h2>
+        <p id="dDay"></p>
+      </section>
+
+      <section id="photo" class="section">
+        <h2>끼욱스 찰칵스</h2>
+        <p>사진 올리는 영역은 다음 단계에서 깔끔하게 붙여주자잉</p>
+      </section>
+
+      <footer class="footer">
+        <p>우리만 아는 공간</p>
+      </footer>
+
+    </main>
   </div>
 
   <script src="script.js"></script>
