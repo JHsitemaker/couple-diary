@@ -195,3 +195,7 @@ html{
     gap: 26px;
   }
 }
+
+.topnav{ z-index: 9999; pointer-events: auto; }
+.overlay{ position: relative; z-index: 1; }
+.overlay::before{ pointer-events: none; }
