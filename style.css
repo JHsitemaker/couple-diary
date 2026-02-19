@@ -1,3 +1,4 @@
+/* 전체 페이지 */
 body {
     margin: 0;
     padding: 0;
@@ -9,5 +10,69 @@ body {
 
     height: 100vh;
 
-    font-family: sans-serif;
+    font-family: 'Pretendard', sans-serif;
+}
+
+
+/* 전체 내용을 중앙 정렬 */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.65);  /* ← 배경 어둡기 (투명도 조절 핵심) */
+
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* 세로 중앙 */
+    align-items: center;      /* 가로 중앙 */
+
+    text-align: center;
+
+    color: #ffffff;
+}
+
+
+/* 메인 제목 */
+header h1 {
+    font-size: 56px;
+    margin-bottom: 10px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    text-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+
+/* 부제목 */
+.subtitle {
+    font-size: 20px;
+
+    color: rgba(255,255,255,0.8);
+
+    margin-bottom: 40px;
+}
+
+
+/* 섹션 */
+section {
+    margin-top: 20px;
+}
+
+
+/* 섹션 제목 */
+h2 {
+    font-size: 28px;
+
+    color: #ffdede;
+
+    margin-bottom: 10px;
+}
+
+
+/* 일반 텍스트 */
+p {
+    font-size: 18px;
+
+    color: rgba(255,255,255,0.85);
 }
