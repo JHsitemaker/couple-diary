@@ -199,3 +199,217 @@ html{
 .topnav{ z-index: 9999; pointer-events: auto; }
 .overlay{ position: relative; z-index: 1; }
 .overlay::before{ pointer-events: none; }
+
+/* 상단 고정 메뉴 */
+.topnav{
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, calc(100% - 24px));
+  height: 48px;
+  padding: 0 10px;
+  border-radius: 999px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  z-index: 50;
+}
+
+/* 메뉴 링크 */
+.navlink{
+  text-decoration: none;
+  color: rgba(255,255,255,0.85);
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  transition: 0.2s;
+}
+.navlink:hover{
+  background: rgba(255,255,255,0.10);
+}
+.navlink.active{
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+}
+
+/* 메인(상단 메뉴와 겹치지 않게) */
+.hero{
+  width: min(980px, calc(100% - 24px));
+  padding-top: 90px;
+  padding-bottom: 44px;
+}
+
+/* 섹션 공통 폭/여백 */
+.section{
+  width: min(980px, calc(100% - 24px));
+  padding: 48px 0;
+}
+
+/* 섹션 헤더(제목 + 버튼) */
+.sectionHead{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* 버튼 */
+.ctaRow{
+  display:flex;
+  gap: 10px;
+  margin-top: 18px;
+  margin-bottom: 24px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.btn{
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.btn:hover{
+  background: rgba(255,255,255,0.16);
+}
+.btn.primary{
+  background: rgba(255,255,255,0.22);
+}
+.btn.ghost{
+  background: rgba(255,255,255,0.08);
+}
+.btn.small{
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+/* 메인 요약 */
+.homeSummary{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.summaryTitle{
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.95);
+}
+
+.summaryBlock{
+  padding: 0;           /* 카드 느낌 싫다 했으니 여백 최소 */
+}
+
+.summaryList{
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.emptyHint{
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+}
+
+/* 입력 박스 (카드처럼 두껍게 안 보이게) */
+.formBox{
+  margin-top: 14px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  display: none; /* 기본 닫힘 */
+}
+
+.fieldRow{
+  margin-top: 10px;
+}
+
+.fieldRow.two{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.fieldRow.actions{
+  display:flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+input[type="text"], input[type="date"], input[type="time"]{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.28);
+  color: #fff;
+  outline: none;
+}
+
+.hint{
+  font-size: 13px;
+  margin-top: 8px;
+  color: rgba(255,255,255,0.65);
+}
+
+/* 일정 리스트 */
+.listBox{
+  margin-top: 14px;
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.itemRow{
+  display:flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.itemLeft{
+  display:flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.itemTitle{
+  font-weight: 600;
+}
+.itemMeta{
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* 사진 그리드 */
+.photoGrid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+.photoGrid img{
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* 모바일 최적화 */
+@media (max-width: 720px){
+  header h1{ font-size: 40px; }
+  .homeSummary{ grid-template-columns: 1fr; }
+  .photoGrid{ grid-template-columns: repeat(2, 1fr); }
+  .fieldRow.two{ grid-template-columns: 1fr; }
+}
+
