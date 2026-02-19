@@ -1,1 +1,1 @@
-arduino/.gitkeep
+arduino/background.jpg
