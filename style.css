@@ -1,25 +1,21 @@
-/* ===== Reset & Base ===== */
 :root{
-  --bg-overlay-1: rgba(0,0,0,0.60);
-  --bg-overlay-2: rgba(0,0,0,0.35);
+  --overlay-top: rgba(0,0,0,0.55);
+  --overlay-bottom: rgba(0,0,0,0.25);
 
   --text-strong: rgba(255,255,255,0.92);
-  --text-mid: rgba(255,255,255,0.78);
-  --text-soft: rgba(255,255,255,0.62);
+  --text-mid: rgba(255,255,255,0.74);
+  --text-soft: rgba(255,255,255,0.58);
 
-  --card-bg: rgba(255,255,255,0.10);
-  --card-border: rgba(255,255,255,0.18);
+  --line: rgba(255,255,255,0.16);
 
   --accent: #ffd6d6;
+  --nav-bg: rgba(10,10,12,0.35);
+  --nav-border: rgba(255,255,255,0.14);
 }
 
-*{
-  box-sizing: border-box;
-}
+*{ box-sizing: border-box; }
 
-html, body{
-  height: 100%;
-}
+html, body{ height: 100%; }
 
 body{
   margin: 0;
@@ -32,149 +28,167 @@ body{
 
   font-family: 'Pretendard', system-ui, -apple-system, sans-serif;
   color: var(--text-strong);
-
-  /* 배경이 너무 튀면 살짝 톤 다운 느낌 */
-  filter: saturate(0.95) contrast(0.98);
 }
 
-/* ===== Overlay (배경톤 + 유리 느낌) ===== */
+/* 배경 안정화: 카드 대신 전체 오버레이로만 컨트롤 */
 .overlay{
   min-height: 100vh;
   width: 100%;
 
-  /* 위에서 아래로 자연스럽게 어두워지는 그라데이션 */
   background: linear-gradient(
     180deg,
-    var(--bg-overlay-1) 0%,
-    var(--bg-overlay-2) 60%,
-    rgba(0,0,0,0.20) 100%
+    var(--overlay-top) 0%,
+    rgba(0,0,0,0.40) 45%,
+    var(--overlay-bottom) 100%
   );
 
-  /* 가운데 정렬 */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  padding-top: 68px; /* 상단 메뉴 높이만큼 */
+}
+
+/* 상단 메뉴: 고정, 직관적 */
+.topnav{
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(920px, calc(100% - 24px));
+  height: 48px;
+
+  display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 10px;
 
-  /* 텍스트 정렬 */
-  text-align: center;
+  background: var(--nav-bg);
+  border: 1px solid var(--nav-border);
 
-  /* 모바일 padding */
-  padding: 56px 18px;
-}
-
-/* ===== 가운데 내용 래퍼 (카드형) ===== */
-.overlay > header,
-.overlay > section{
-  width: 100%;
-}
-
-.overlay{
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* 전체 컨텐츠를 감싸는 느낌을 카드로 주고 싶으면
-   HTML에 wrapper div를 추가하는게 베스트지만,
-   지금 구조 유지하면서 섹션 각각 카드로 만들어줌 */
-section{
-  width: 100%;
-  max-width: 720px;
-
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 18px;
-
-  padding: 18px 18px;
-
-  /* 유리 느낌 */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-
-  margin: 0;
+  border-radius: 999px;
+  z-index: 10;
 }
 
-/* header는 카드 느낌을 조금 다르게 */
-header{
-  width: 100%;
-  max-width: 720px;
+.navlink{
+  text-decoration: none;
+  color: var(--text-mid);
+  font-size: 14px;
+  font-weight: 600;
 
-  padding: 22px 18px 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 22px;
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+  transition: background 160ms ease, color 160ms ease;
 }
 
-/* ===== Typography ===== */
-header h1{
+.navlink:hover{
+  background: rgba(255,255,255,0.10);
+  color: var(--text-strong);
+}
+
+/* 현재 섹션 표시용(스크립트에서 active 붙일 거임) */
+.navlink.active{
+  background: rgba(255,255,255,0.16);
+  color: var(--text-strong);
+}
+
+/* 콘텐츠 폭 제한 + 중앙 */
+.wrap{
+  width: min(920px, calc(100% - 24px));
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  padding: 22px 0 60px;
+}
+
+/* 히어로 */
+.hero{
+  padding: 10px 0 6px;
+}
+
+.hero h1{
   margin: 0;
-  font-size: clamp(32px, 4.5vw, 54px);
-  font-weight: 750;
+  font-size: clamp(34px, 4.8vw, 58px);
+  font-weight: 780;
   letter-spacing: -0.02em;
 
-  color: var(--text-strong);
-
-  /* 과한 글로우 제거하고 고급스럽게 */
-  text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  text-shadow: 0 10px 22px rgba(0,0,0,0.35);
 }
 
 .subtitle{
   margin: 10px 0 0;
-  font-size: clamp(14px, 2.2vw, 18px);
-  font-weight: 450;
+  font-size: clamp(14px, 2.1vw, 18px);
   color: var(--text-mid);
-  letter-spacing: -0.01em;
 }
 
-/* 섹션 제목 */
-h2{
-  margin: 0 0 8px;
-  font-size: clamp(16px, 2.6vw, 22px);
-  font-weight: 700;
+/* 섹션: 카드 대신 라인 + 여백 + 깔끔 */
+.section{
+  padding: 18px 0 6px;
+  border-top: 1px solid var(--line);
+}
+
+.section h2{
+  margin: 0 0 10px;
+  font-size: clamp(18px, 2.8vw, 26px);
   color: var(--accent);
   letter-spacing: -0.01em;
 }
 
-/* 본문 */
-p{
+.section p{
   margin: 0;
-  font-size: clamp(14px, 2.3vw, 17px);
-  line-height: 1.6;
+  font-size: clamp(14px, 2.2vw, 17px);
   color: var(--text-mid);
+  line-height: 1.7;
 }
 
-/* D-DAY 텍스트가 좀 더 강조되게 */
 #dDay{
   margin-top: 10px;
   font-weight: 700;
   color: var(--text-strong);
 }
 
-/* ===== 섹션 간격 ===== */
-.overlay header{
-  margin-bottom: 14px;
+.footer{
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
 }
 
-/* ===== 모바일에서 너무 붙으면 더 여유 ===== */
+.footer p{
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 13px;
+}
+
+/* 원페이지 이동 부드럽게 */
+html{
+  scroll-behavior: smooth;
+}
+
+/* 모바일 */
 @media (max-width: 480px){
+  .topnav{
+    top: 10px;
+    height: 46px;
+    gap: 6px;
+  }
+
+  .navlink{
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
   .overlay{
-    padding: 46px 14px;
-    gap: 14px;
+    padding-top: 64px;
   }
 
-  header{
-    border-radius: 18px;
-  }
-
-  section{
-    border-radius: 16px;
-    padding: 16px 14px;
+  .wrap{
+    gap: 26px;
   }
 }
