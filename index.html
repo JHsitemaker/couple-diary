@@ -8,40 +8,94 @@
 <body>
   <div class="overlay">
 
+    <!-- 상단 고정 메뉴 -->
     <nav class="topnav">
-      <a href="#home" class="navlink">홈</a>
+      <a href="#home" class="navlink active">홈</a>
       <a href="#story" class="navlink">스토리</a>
       <a href="#schedule" class="navlink">일정표</a>
       <a href="#photo" class="navlink">찰칵스</a>
     </nav>
 
-    <main class="wrap">
+    <!-- 홈(메인) -->
+    <header id="home" class="hero">
+      <h1>오봉빙스페이스</h1>
+      <p class="subtitle">타로맘 오복맘의 공간</p>
 
-      <header id="home" class="hero">
-        <h1>오봉빙스페이스</h1>
-        <p class="subtitle">타로맘 오복맘의 공간</p>
-      </header>
+      <!-- 메인 CTA 버튼 -->
+      <div class="ctaRow">
+        <button class="btn primary" id="goAddSchedule">일정등록</button>
+        <button class="btn ghost" id="goUploadPhoto">사진업로드</button>
+      </div>
 
-      <section id="story" class="section">
-        <h2>오봉빙스토리</h2>
-        <p>여기엔 무엇이 들어갈까나리</p>
-      </section>
+      <!-- 메인 요약 영역: 일정/사진만 간략 -->
+      <div class="homeSummary">
+        <div class="summaryBlock">
+          <div class="summaryTitle">다가오는 일정</div>
+          <div id="schedulePreview" class="summaryList">
+            <div class="emptyHint">아직 등록된 일정이 없다잉</div>
+          </div>
+        </div>
 
-      <section id="schedule" class="section">
+        <div class="summaryBlock">
+          <div class="summaryTitle">최근 찰칵스</div>
+          <div id="photoPreview" class="photoGrid">
+            <div class="emptyHint">아직 업로드한 사진이 없다잉</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 스토리 -->
+    <section id="story" class="section">
+      <h2>오봉빙스토리</h2>
+      <p>여기엔 무엇이 들어갈까나리</p>
+    </section>
+
+    <!-- 일정표(여기에 실제 등록 UI) -->
+    <section id="schedule" class="section">
+      <div class="sectionHead">
         <h2>일정표</h2>
-        <p id="dDay"></p>
-      </section>
+        <button class="btn small" id="openScheduleForm">일정등록</button>
+      </div>
 
-      <section id="photo" class="section">
-        <h2>끼욱스 찰칵스</h2>
-        <p>사진 올리는 영역은 다음 단계에서 깔끔하게 붙여주자잉</p>
-      </section>
+      <div class="formBox" id="scheduleForm">
+        <div class="fieldRow">
+          <input type="text" id="schTitle" placeholder="일정 제목 (예: 병원, 여행, 데이트)" />
+        </div>
+        <div class="fieldRow two">
+          <input type="date" id="schDate" />
+          <input type="time" id="schTime" />
+        </div>
+        <div class="fieldRow">
+          <input type="text" id="schMemo" placeholder="메모 (선택)" />
+        </div>
+        <div class="fieldRow actions">
+          <button class="btn primary" id="saveSchedule">저장</button>
+          <button class="btn ghost" id="closeScheduleForm">닫기</button>
+        </div>
+      </div>
 
-      <footer class="footer">
-        <p>우리만 아는 공간</p>
-      </footer>
+      <div id="scheduleList" class="listBox"></div>
+    </section>
 
-    </main>
+    <!-- 찰칵스(여기에 실제 업로드 UI) -->
+    <section id="photo" class="section">
+      <div class="sectionHead">
+        <h2>찰칵스</h2>
+        <button class="btn small" id="openPhotoUploader">사진업로드</button>
+      </div>
+
+      <div class="formBox" id="photoForm">
+        <input type="file" id="photoInput" accept="image/*" multiple />
+        <p class="hint">업로드하면 이 브라우저에만 저장(미리보기)된다잉</p>
+        <div class="fieldRow actions">
+          <button class="btn ghost" id="closePhotoForm">닫기</button>
+        </div>
+      </div>
+
+      <div id="photoGallery" class="photoGrid"></div>
+    </section>
+
   </div>
 
   <script src="script.js"></script>
