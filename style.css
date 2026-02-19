@@ -16,19 +16,23 @@ body {
 
 /* 전체 내용을 중앙 정렬 */
 .overlay {
-    background-color: rgba(0, 0, 0, 0.65);  /* ← 배경 어둡기 (투명도 조절 핵심) */
+    background: linear-gradient(
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.4)
+    );
 
     height: 100vh;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;  /* 세로 중앙 */
-    align-items: center;      /* 가로 중앙 */
+    justify-content: center;
+    align-items: center;
 
     text-align: center;
 
-    color: #ffffff;
+    color: white;
 }
+
 
 
 /* 메인 제목 */
